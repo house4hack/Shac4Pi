@@ -10,4 +10,5 @@
     -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <dimen name="small_padding">6dp</dimen>
 </resources>
