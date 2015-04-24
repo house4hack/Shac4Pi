@@ -54,7 +54,7 @@ android {
 		// Xtend support libraries
 		compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.2'
 		//compile 'com.github.tobykurien:xtendroid:0.12.0'
-			
+
         // jar dependencies
 		compile fileTree(dir: 'jarDependencies', includes: ['*.jar'])
     }
