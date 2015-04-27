@@ -17,4 +17,8 @@
     <color name="myNavigationColor">#000000</color>
 
     <color name="selected_gray">#ffdbdbdb</color>
+    
+    <color name="drawerBackground">#FFFFFF</color>
+    <color name="accentColor">@color/myAccentColor</color>
+    
 </resources>
