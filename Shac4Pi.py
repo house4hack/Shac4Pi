@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # PyGtalkRobot: A simple jabber/xmpp bot framework using Regular Expression Pattern as command controller
@@ -45,11 +45,14 @@ from PyGtalkRobot import GtalkRobot
 BOT_GTALK_USER = 'our_shac4pi_user@gmail.com'
 BOT_GTALK_PASS = 'ourpassword'
 BOT_ADMIN = 'the_bot_admin@gmail.com'
+#GATEKEEPER = '32sjo75o1fcf23gd1cg2orxm1d@public.talk.google.com/PsiC1726883'
+GATEKEEPER = '32sjo75o1fcf23gd1cg2orxm1d@public.talk.google.com/gmail.F5DA3BA8'
 
 debug=open('/tmp/shac4py.log', 'w+')
 
 #GPIO.setmode(GPIO.BOARD) # or 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 ############################################################################################################################
 
 class RaspiBot(GtalkRobot):
@@ -71,6 +74,7 @@ class RaspiBot(GtalkRobot):
         show = args[0]
         status = args[1]
         jid = user.getStripped()
+	print "jid: "+ jid
 
         # Verify if the user is the Administrator of this bot
         if jid == BOT_ADMIN:
@@ -82,15 +86,23 @@ class RaspiBot(GtalkRobot):
     def command_003_pinOn(self, user, message, args):
         '''(door_open)( +(.*))?$(?i)'''
         door_num = args[1]
+        #jid = user.getStripped()
+        #print "jid: "+ jid + "user : "
+        #print user
         print "About to open a door : "+ door_num +"\n"
-        if int(door_num) == 1:
-                pin_num=23
-        if int(door_num) == 2:
-                pin_num=24
+	if int(door_num) == 1:
+		pin_num=23
+	if int(door_num) == 2:
+		pin_num=24
         GPIO.setup(int(pin_num), GPIO.OUT)
         GPIO.output(int(pin_num), True)
-        self.replyMessage(user, "\nOpening door: "+ door_num +" at: "+time.strftime("%Y-%m-%d %a %H:%M:%S", time.localtime()))
-        # sleep for 10 seconds here
+        #self.replyMessage(user, "\nOpening door: "+ door_num +" at: "+time.strftime("%Y-%m-%d %a %H:%M:%S", time.localtime()))
+        jid = user.getStripped()
+        print jid, " ---> ",bot.getResources(jid), bot.getShow(jid), bot.getStatus(jid)
+        print "getShow : "
+        bot.getShow(jid)
+        self.replyMessage(GATEKEEPER, "\nOpening door: "+ door_num +" at: "+time.strftime("%Y-%m-%d %a %H:%M:%S", time.localtime()))
+	# sleep for 10 seconds here
         time.sleep(10)
         GPIO.setup(int(pin_num), GPIO.OUT)
         GPIO.output(int(pin_num), False)
