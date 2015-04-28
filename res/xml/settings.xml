@@ -14,7 +14,8 @@
             android:defaultValue="5222"
             android:key="server_port"
             android:summary="e.g. 5222"
-            android:title="XMPP server port" />
+            android:title="XMPP server port" 
+            android:inputType="number"/>
         <EditTextPreference
             android:defaultValue="gmail.com"
             android:key="server_resource"
@@ -32,7 +33,8 @@
             android:defaultValue="mypassword"
             android:key="password"
             android:summary="e.g. mypassword"
-            android:title="XMPP account password" />
+            android:title="XMPP account password" 
+            android:inputType="textPassword"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
