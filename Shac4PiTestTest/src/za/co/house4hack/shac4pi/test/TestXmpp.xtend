@@ -1,16 +1,23 @@
 package za.co.house4hack.shac4pi.test
 
 import android.test.AndroidTestCase
+import android.util.Log
 import java.util.Collection
+import org.jivesoftware.smack.Chat
+import org.jivesoftware.smack.ChatManager
 import org.jivesoftware.smack.ConnectionConfiguration
+import org.jivesoftware.smack.MessageListener
 import org.jivesoftware.smack.PacketListener
 import org.jivesoftware.smack.Roster
 import org.jivesoftware.smack.RosterEntry
 import org.jivesoftware.smack.XMPPConnection
+import org.jivesoftware.smack.XMPPException
 import org.jivesoftware.smack.filter.MessageTypeFilter
 import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smack.packet.Packet
 import org.jivesoftware.smack.packet.Presence
+
+import static junit.framework.Assert.*
 
 class TestXmpp extends AndroidTestCase {
     def void testXmpp1() {
@@ -25,9 +32,39 @@ class TestXmpp extends AndroidTestCase {
         assertTrue(connection.connected);
 
         // login
-        connection.login("you@gmail.com", "yourpassword")
+        connection.login("someone@gmail.com", "thepassword")
 
         assertTrue(connection.isAuthenticated);
+        
+        // Create a new presence. Pass in false to indicate we're unavailable.
+        var Presence presence = new Presence(Presence.Type.available);
+        presence.setStatus("I’m unavailable");
+        connection.sendPacket(presence);
+
+        var Roster roster = connection.getRoster();
+        if (!roster.contains("serveraccount@gmail.com")) {
+            // add it
+            Log.d("xmpp", "Shac4Pi not a friend, adding")
+            roster.createEntry("shac4pi@gmail.com", "Something", #[ "one", "two" ]);
+        }
+        
+        var ChatManager chatmanager = connection.getChatManager();
+        var Chat newChat = chatmanager.createChat("shac4pi@gmail.com", new MessageListener() {
+            override void processMessage(Chat chat, Message message) {
+                Log.d("xmpp", "Received message: " + message);
+            }
+        });
+        
+        try {
+            newChat.sendMessage("door_open 2");
+        } catch (XMPPException e) {
+            assertTrue(e.message, false)
+        }
+
+        Thread.sleep(5000)
+        assertTrue(connection.authenticated)
+        
+        connection.disconnect();        
     }
     
     def void sampleCode() {
