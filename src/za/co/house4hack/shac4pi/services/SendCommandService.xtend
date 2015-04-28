@@ -49,10 +49,11 @@ class SendCommandService extends IntentService {
         
         // Create a new presence. Pass in false to indicate we're unavailable.
         var Presence presence = new Presence(Presence.Type.available);
-        presence.setStatus("I’m available");
+        presence.setStatus("Logged in via Shac4Pi app");
         connection.sendPacket(presence);
 
         var Roster roster = connection.getRoster();
+        roster.subscriptionMode = Roster.SubscriptionMode.manual;
         if (!roster.contains(settings.serverAccount)) {
             // add it
             Log.d("xmpp", "Shac4Pi not a friend, adding")

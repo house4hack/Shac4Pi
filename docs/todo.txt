@@ -8,6 +8,7 @@ App:
 
 - On startup:
   - connect to server and retrieve config ASAP
+  - save config and current SSID to be used as fallback when on wifi
 
 - On button push:
   - disable all buttons
