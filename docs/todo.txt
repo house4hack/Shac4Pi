@@ -27,7 +27,12 @@ Server:
   - must respond to new messages immediately after processing last message (to be able to stop/start gate, for example)
 
 - Command from app: get_config
-  - send back server config: current time, server xmpp account, server internal ip, nearby cell id's
+  - send back server config: 
+    - current time
+    - server xmpp account 
+    - server internal ip
+    - nearby cell id's
+    - how many buttons and their configs
 
 - Listen for UDP packet for discovery
   - server send back UDP packet with it's IP address
