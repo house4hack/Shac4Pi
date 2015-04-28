@@ -45,11 +45,11 @@ class TestXmpp extends AndroidTestCase {
         if (!roster.contains("serveraccount@gmail.com")) {
             // add it
             Log.d("xmpp", "Shac4Pi not a friend, adding")
-            roster.createEntry("shac4pi@gmail.com", "Something", #[ "one", "two" ]);
+            roster.createEntry("serveraccount@gmail.com", "Something", #[ "one", "two" ]);
         }
         
         var ChatManager chatmanager = connection.getChatManager();
-        var Chat newChat = chatmanager.createChat("shac4pi@gmail.com", new MessageListener() {
+        var Chat newChat = chatmanager.createChat("serveraccount@gmail.com", new MessageListener() {
             override void processMessage(Chat chat, Message message) {
                 Log.d("xmpp", "Received message: " + message);
             }

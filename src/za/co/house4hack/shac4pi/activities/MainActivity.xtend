@@ -1,10 +1,13 @@
 package za.co.house4hack.shac4pi.activities
 
+import android.support.v4.app.Fragment
 import android.view.View
 import org.xtendroid.app.AndroidActivity
 import org.xtendroid.app.OnCreate
 import za.co.house4hack.shac4pi.R
+import za.co.house4hack.shac4pi.fragments.MainFragment
 import za.co.house4hack.shac4pi.fragments.NavigationDrawerFragment
+import android.content.Intent
 
 // Main activity
 @AndroidActivity(R.layout.activity_main) class MainActivity extends BaseActivity {
@@ -14,24 +17,30 @@ import za.co.house4hack.shac4pi.fragments.NavigationDrawerFragment
     def init() {
         setupToolbar()
         setupDrawerLayout()
+        addFragment("main")
     }
 
-    def addFragment(int position) {
+    def addFragment(String tag) {
+        if ("settings".equals(tag)) {
+            // start settings activity
+            var i = new Intent(this, SettingsActivity)
+            startActivity(i)
+            return
+        }
+        
         // create a new fragment each time. Change this to cache fragments as necessary.
-        var frag = switch (position) {
-//         case 0: new FragmentOne()
-//         case 1: new FragmentTwo()
-//         default: new FragmentOne()
+        var Fragment fragm = switch (tag) {
+            default: new MainFragment()
         }
 
         supportFragmentManager.beginTransaction
-            .replace(R.id.container, frag, String.valueOf(position))
+            .replace(R.id.container, fragm, tag)
             .commit();
     }
 
     def setupDrawerLayout() {
         supportFragmentManager.beginTransaction
-            .replace(R.id.left_drawer, new NavigationDrawerFragment, "drawer")
+            .replace(R.id.left_drawer, new NavigationDrawerFragment(), "drawer")
             .commit();
 
         actionBarDrawerToggle = new MyActionBarDrawerToggle(this, drawerLayout, toolbar)
@@ -41,7 +50,6 @@ import za.co.house4hack.shac4pi.fragments.NavigationDrawerFragment
         drawerLayout.post [
             actionBarDrawerToggle.syncState()
         ];
-
     }
 
     def setupToolbar() {
@@ -53,5 +61,6 @@ import za.co.house4hack.shac4pi.fragments.NavigationDrawerFragment
     // Item in the navigation drawer was clicked
     def void onNavItemClicked(View v) {
     	drawerLayout.closeDrawer(leftDrawer)
+    	addFragment(v.tag as String)
     }
 }
