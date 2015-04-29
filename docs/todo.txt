@@ -21,6 +21,15 @@ App:
 - Disconnect after 1 minute of app pause
 
 
+Admin App:
+==========
+
+- Sign in to XMPP account
+- View list of buddies (i.e. accounts with access)
+- Remove/block buddy
+- Receive buddy requests and approve/deny/block
+- Configure number of buttons and images/icons/text for each button
+
 Server:
 =======
 - Single threaded without a queue: discard messages while processing a message
@@ -34,11 +43,25 @@ Server:
     - nearby cell id's
     - how many buttons and their configs
 
+- Command from app: open [number] [timestamp] [cellid]
+  - server to check timestamp and reject old messages
+  - server to check cellid and reject if cellid not in database
+  - if all ok, open relay
+
+- Command from app: add_cellid [cellid]
+  - server to add the cell id if it's not already in the database
+
 - Listen for UDP packet for discovery
   - server send back UDP packet with it's IP address
+  - see Gossip protocol
 
 - HTTP server:
   - GET /open/1 - open door/gate
   - GET /config - return config, as for the XMPP version
+  - PUT /cellid/[cellid] - add cellid, as for the XMPP version
+  - web page allowing user to use browser to open relays
 
- 
+- Ability for admin app to:
+  - upload button config including images for each button
+  - upload Cell id
+
