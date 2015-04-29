@@ -33,6 +33,6 @@ You will need Eclipse with the Xtend plugin for development. You can use Android
 - In Eclipse, *File > Import > General > Existing Projects Into Workspace*. Select the project folder and tick *Search for nested projects*. Import the displayed projects
 - Wait for the initial build to complete. You are now ready to develop.
 
-    [gradle]: https://gradle.org/downloads/
-    [android_sdk]: https://developer.android.com/sdk/index.html#Other
+[gradle]: https://gradle.org/downloads/
+[android_sdk]: https://developer.android.com/sdk/index.html#Other
     
