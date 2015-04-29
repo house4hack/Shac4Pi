@@ -20,7 +20,31 @@ import org.jivesoftware.smack.packet.Presence
 import static junit.framework.Assert.*
 
 class TestXmpp extends AndroidTestCase {
-    def void testXmpp1() {
+
+    def void testRegister() {
+        val username = "shac4pi_test1"
+        val password = "!Q@W#E$R%"
+        
+        var connConfig = new ConnectionConfiguration("jabber.co.za", 5223, "");
+        var XMPPConnection connection = new XMPPConnection(connConfig);
+        connection.connect();
+
+        assertTrue(connection.connected);
+
+        // register
+        try { 
+            connection.accountManager.createAccount(username, password)
+        } catch (Exception e) {
+            Log.d("xmpp", "error registering", e)
+        }
+
+        // login 
+        connection.login(username, password)
+
+        assertTrue(connection.isAuthenticated);
+    }
+
+    def void _testXmpp1() {
 
         // see http://developer.samsung.com/technical-doc/view.do
 

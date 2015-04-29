@@ -1,5 +1,6 @@
 package za.co.house4hack.shac4pi.activities
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import android.view.View
 import org.xtendroid.app.AndroidActivity
@@ -7,7 +8,6 @@ import org.xtendroid.app.OnCreate
 import za.co.house4hack.shac4pi.R
 import za.co.house4hack.shac4pi.fragments.MainFragment
 import za.co.house4hack.shac4pi.fragments.NavigationDrawerFragment
-import android.content.Intent
 
 // Main activity
 @AndroidActivity(R.layout.activity_main) class MainActivity extends BaseActivity {

@@ -60,6 +60,7 @@ Server:
   - GET /config - return config, as for the XMPP version
   - PUT /cellid/[cellid] - add cellid, as for the XMPP version
   - web page allowing user to use browser to open relays
+  - protected web page to set up Shac4Pi: Jabber account details, buttons, etc.
 
 - Ability for admin app to:
   - upload button config including images for each button
