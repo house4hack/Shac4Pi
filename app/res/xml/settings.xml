@@ -1,0 +1,40 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Server settings" >
+        <EditTextPreference
+            android:key="server_account"
+            android:summary="e.g. serveraccount@gmail.com"
+            android:title="Server account" />
+        <EditTextPreference
+            android:defaultValue="talk.google.com"
+            android:key="server_host"
+            android:summary="e.g. talk.google.com"
+            android:title="XMPP server host" />
+        <EditTextPreference
+            android:defaultValue="5222"
+            android:key="server_port"
+            android:summary="e.g. 5222"
+            android:title="XMPP server port" 
+            android:inputType="number"/>
+        <EditTextPreference
+            android:defaultValue="gmail.com"
+            android:key="server_resource"
+            android:summary="e.g. gmail.com"
+            android:title="XMPP server resource" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Access settings" >
+        <EditTextPreference
+            android:key="account"
+            android:summary="e.g. myaccount@gmail.com"
+            android:title="XMPP account" 
+            android:defaultValue="myaccount@gmail.com"/>
+        <EditTextPreference            
+            android:defaultValue="mypassword"
+            android:key="password"
+            android:summary="e.g. mypassword"
+            android:title="XMPP account password" 
+            android:inputType="textPassword"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
