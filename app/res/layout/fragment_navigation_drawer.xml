@@ -13,20 +13,22 @@
         android:src="@drawable/house4hack" />
 
     <Button
+        android:drawableLeft="@drawable/ic_action_access"
         style="@style/NavDrawerButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onNavItemClicked"
-        android:tag="1"
-        android:text="Item 1" />
-
+        android:tag="access"
+        android:text="@string/action_access" />
+    
     <Button
+        android:drawableLeft="@drawable/ic_action_places"
         style="@style/NavDrawerButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onNavItemClicked"
-        android:tag="2"
-        android:text="Item 2" />
+        android:tag="places"
+        android:text="@string/action_places" />
 
     <View
         android:layout_width="match_parent"
